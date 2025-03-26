@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dynamic Image Gallery</title>
+<style>
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .image-container {
+    margin: 10px;
+    position: relative;
+  }
+  .image-container img {
+    max-width: 200px;
+    max-height: 200px;
+  }
+  .delete-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+  }
+  #add-image-button{
+      margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+
+<div class="gallery" id="image-gallery">
+  </div>
+
+<button id="add-image-button">Add Image</button>
+
+<script>
+  const gallery = document.getElementById('image-gallery');
+  const addImageButton = document.getElementById('add-image-button');
+
+  let imageCounter = 1; // To generate unique image URLs
+
+  function createImageElement(imageUrl) {
+    const imageContainer = document.createElement('div');
+    imageContainer.classList.add('image-container');
+
+    const image = document.createElement('img');
+    image.src = imageUrl;
+    image.alt = 'Gallery Image';
+
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.classList.add('delete-button');
+
+    deleteButton.addEventListener('click', () => {
+      imageContainer.remove();
+    });
+
+    imageContainer.appendChild(image);
+    imageContainer.appendChild(deleteButton);
+
+    return imageContainer;
+  }
+
+  function addImage() {
+    const imageUrl = `https://picsum.photos/200/200?random=${imageCounter}`; // Using Picsum for random images
+    const imageElement = createImageElement(imageUrl);
+    gallery.appendChild(imageElement);
+    imageCounter++;
+  }
+
+  addImageButton.addEventListener('click', addImage);
+
+  // Add a few initial images
+  addImage();
+  addImage();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        let val;
+       function setNumber()
+       {
+        val = parseInt(document.getElementById("texxt").value);
+       }
+
+       function generateTable()
+       {
+        document.getElementById("c").innerHTML= "";
+      let myTable=document.createElement("table");
+      myTable.style.border = "2px solid black"; // ✅ Add table border
+            myTable.style.width = "50%"; // ✅ Set table width
+            myTable.style.textAlign = "center"; // ✅ Center align text
+            myTable.style.borderCollapse = "collapse"; // ✅ Prevents double borders
+      let row=document.createElement("tr");
+      let arr=["iteration","x","=","result"];
+      for(let i=0;i<arr.length;i++)
+      {
+        let th=document.createElement("th");
+        th.innerHTML=arr[i];
+        row.appendChild(th);
+      } myTable.appendChild(row);
+      for(let i=1;i<=10;i++)
+      {
+        row=document.createElement("tr");
+        let first=document.createElement("td");
+        first.innerHTML = i;
+        row.appendChild(first);
+     
+
+        let multiplySymbol = document.createElement("td");
+                multiplySymbol.innerHTML = "X";
+                multiplySymbol.style.border = "1px solid black"; 
+                row.appendChild(multiplySymbol);
+
+                let numberCell = document.createElement("td");
+                numberCell.innerHTML = val;
+                numberCell.style.border = "1px solid black"; 
+                row.appendChild(numberCell);
+
+                let equalSymbol = document.createElement("td");
+                equalSymbol.innerHTML = "=";
+                equalSymbol.style.border = "1px solid black"; 
+                row.appendChild(equalSymbol);
+
+                let result = document.createElement("td");
+                result.innerHTML = i * val;
+                result.style.border = "1px solid black"; 
+                row.appendChild(result);
+                myTable.appendChild(row);
+      }
+    
+    document.getElementById("c").appendChild(myTable);
+       }
+        </script>
+</head>
+<body>
+    <input type="number" placeholder="Enter The Number.." id="texxt" onchange="setNumber()">     <br>
+    <button onclick="generateTable()">Create Table</button>
+    <div id="c">
+        
+
+    </div>
+</body>
+</html>

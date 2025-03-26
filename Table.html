@@ -1,0 +1,66 @@
+<html>
+ <head>
+   <title>creating element</title>
+   <script type='text/javascript'>
+       let val;
+	   function acceptValue(str)
+	   {   val=parseInt(str);   
+	   }
+       function createTag()
+	   { document.getElementById("c").innerHTML="";
+	      let myTable =document.createElement("table");
+		   let row=document.createElement("tr");
+		      let tabheadingarr=["Iteration","X","Number","=","Result"];
+			  for(var i=0; i<tabheadingarr.length; i++)
+			  {   let th=document.createElement("th");
+				  th.innerHTML=tabheadingarr[i];
+				  row.appendChild(th);
+			  }
+			  myTable.appendChild(row);
+			  for(let i=1; i<=10; i++)
+			  {  row=document.createElement("tr"); 
+			     row.style.textAlign="center";
+   				 let firstTd=document.createElement("td");
+				 firstTd.innerHTML=""+i;
+				 row.appendChild(firstTd);
+				   firstTd=document.createElement("td");
+				  firstTd.innerHTML="X";
+				  row.appendChild(firstTd);
+				  firstTd=document.createElement("td");
+				  firstTd.innerHTML=""+val;
+				  row.appendChild(firstTd);
+				 firstTd=document.createElement("td");
+				 firstTd.innerHTML="=";
+				 row.appendChild(firstTd);
+				  firstTd=document.createElement("td");
+				  firstTd.innerHTML=""+(i*val);
+				  row.appendChild(firstTd);
+		
+				  myTable.appendChild(row);
+			  }
+		       myTable.appendChild(row);
+			   myTable.style.width="80%";
+			   myTable.style.border="2px solid black";
+			   myTable.style.padding="10px";
+			
+  			  let container=document.getElementById("c");
+			  container.appendChild(myTable);
+			    
+	   }
+   </script>
+    <style>
+	    input{
+		  width:400px;
+		  height:40px;
+		}
+	</style>
+ </head>
+ <body id="b">
+   <input type='text' name='n' value='' id='txt' onkeyup="acceptValue(this.value)" />&nbsp;
+   &nbsp;&nbsp;<input type='button' name='s' value='Print Table' onclick='createTag()' /> 
+   <br><br>
+   <div id="c">
+     
+   </div>
+ </body>
+</html>
